@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Calendar view -->
+        <record id="hr_contract_view_calendar" model="ir.ui.view">
+            <field name="name">hr.contract.view.calendar</field>
+            <field name="model">hr.contract</field>
+            <field name="arch" type="xml">
+                <calendar string="Active" color="employee_id" date_start="date_start" date_stop="date_futur">
+                    <field name="employee_id"/>
+                </calendar>
+            </field>
+        </record>
+        <record id="hr_contract_view_gantt" model="ir.ui.view">
+            <field name="name">hr.contract.view.gantt</field>
+            <field name="model">hr.contract</field>
+            <field name="arch" type="xml">
+                <gantt color="employee_id" date_start="date_start" date_stop="date_futur" string="Running">
+                    <level object="hr.contract" link="contract_id" domain="[]">
+                        <field name="employee_id"/>
+                    </level>
+                </gantt>
+            </field>
+        </record>
+
+        <record id="hr_contract.action_hr_contract" model="ir.actions.act_window">
+            <field name="view_mode">tree,form,calendar,gantt</field>
+        </record>
+    </data>
+</openerp>
+
